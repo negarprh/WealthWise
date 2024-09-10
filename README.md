@@ -1,2 +1,6 @@
-# python-final-project-2024
-Full Stack Python Project
+# Python Final Project 2024
+## Student Name: Negar Pirasteh
+## Project Title: [Your Project Title]
+This repository contains my final project for the Python course.
+- `proposal.md`: Project proposal
+- `project_exploration.ipynb`: Jupyter notebook for project exploration and prototyping
