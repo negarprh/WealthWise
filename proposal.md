@@ -1,10 +1,10 @@
-# Personal Finance Tracker with Budget Recommendation API
+# Personal Finance and Investment Tracker with Stock API
 
 ## Project Description
-This project is a web-based finance tracking application that helps users log income, expenses, and monitor savings goals. It also provides personalized budget recommendations via an API based on user spending patterns.
+This project is a web-based application that helps users track their income, expenses, and savings goals, while also allowing them to manage their investment portfolio. It provides real-time stock price updates through an API to help users monitor their investments and overall financial health.
 
 ## Main Idea
-The core idea of this project is to help users better manage their finances by offering a simple interface to track financial transactions and visualize their spending patterns. The budget recommendation API suggests personalized budget limits for smarter financial planning.
+The core idea of this project is to offer users a comprehensive financial tool where they can manage both their personal finances and investments. The system tracks financial transactions and provides real-time stock market data to assist users in managing their portfolios effectively.
 
 ## Technologies
 - Python
@@ -13,6 +13,7 @@ The core idea of this project is to help users better manage their finances by o
 - SQLite
 - Matplotlib
 - Pandas
+- Stock API (e.g., Alpha Vantage, Yahoo Finance)
 
 ## Project Timeline
 - Week 4: Project initialization and setup
