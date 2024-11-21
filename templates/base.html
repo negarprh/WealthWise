@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Finance Tracker{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <h1 class="navbar-title">Finance Tracker</h1>
+            <nav>
+                <ul class="navbar-links">
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+                    <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        {% block content %}
+        <!-- Content unique to each page goes here -->
+        {% endblock %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+    </main>
+    <footer>
+        <p>&copy; 2024 Finance Tracker. All rights reserved.</p>
+    </footer>
+
+
+<script>
+    // Auto-hide flash messages after 3 seconds
+    document.addEventListener('DOMContentLoaded', function () {
+        const flashes = document.querySelector('.flashes');
+        if (flashes) {
+            setTimeout(() => {
+                flashes.style.display = 'none';
+            }, 3000); // 3 seconds
+        }
+    });
+</script>
+
+</body>
+</html>

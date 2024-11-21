@@ -1,0 +1,738 @@
+/* General Styles */
+*{
+      font-family: "Open Sans", sans-serif !important;
+}
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+/* Welcome Page Styling */
+.welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f9f9f9;
+    margin: 0;
+}
+
+.welcome-card {
+    text-align: center;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.welcome-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #666;
+}
+
+.welcome-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.welcome-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.welcome-button.login-button {
+    background-color: #4caf50;
+}
+
+.welcome-button.login-button:hover {
+    background-color: #45a049;
+}
+
+.welcome-button.signup-button {
+    background-color: #008cba;
+}
+
+.welcome-button.signup-button:hover {
+    background-color: #007bb5;
+}
+
+.welcome-footer {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #999;
+}
+
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #3f51b5, #2196f3);
+    padding: 15px 20px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-links li {
+    margin: 0;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.navbar-links a:hover {
+    background: white;
+    color: #3f51b5;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(90deg, #2196f3, #3f51b5);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+    font-weight: 400;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Subtle Hover Effect for Footer */
+footer:hover {
+    background: linear-gradient(90deg, #1e88e5, #283593);
+    transition: background 0.5s ease-in-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .navbar-title {
+        margin-bottom: 10px;
+    }
+}
+
+/* Signup Container */
+.signup-container {
+
+    background: radial-gradient(circle, rgba(63, 81, 181, 1) 0%, rgba(33, 150, 243, 1) 50%, rgba(3, 169, 244, 1) 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    /*border: 3px solid red;*/
+}
+
+/* Floating Gradient Circles */
+.signup-container::before,
+.signup-container::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+
+}
+
+.signup-container::before {
+    width: 300px;
+    height: 300px;
+    top: -100px;
+    left: -100px;
+    animation-delay: 0s;
+    animation: float 18s infinite alternate;
+}
+
+.signup-container::after {
+    width: 400px;
+    height: 400px;
+    bottom: -150px;
+    right: -150px;
+    animation-delay: 0s;
+     animation: float2 18s infinite alternate;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateY(300px);
+        transform: translateX(1300px);
+    }
+}
+
+@keyframes float2 {
+    0% {
+        transform: translateY(0);
+        transform: translateX(0);
+    }
+
+    100%{
+         transform: translateY(-1000px);
+        transform: translateX(-1300px);
+    }
+}
+
+{
+
+}
+/* Signup Card */
+.signup-card {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Title */
+.signup-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #3f51b5;
+}
+
+/* Form */
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}
+
+/* Labels */
+.signup-label {
+    font-size: 18px;
+    color: #333;
+    display: flex;
+    width: 100%;
+    text-align: left;
+    font-weight: 700;
+}
+
+/* Input Fields */
+.signup-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.signup-input:focus {
+    border-color: #3f51b5;
+    box-shadow: 0 0 8px rgba(63, 81, 181, 0.4);
+}
+
+/* Button */
+.signup-button {
+    background: #3f51b5;
+    color: white;
+    padding: 12px;
+    width: 420px;
+    border: none ;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.signup-button:hover {
+    background: #283593;
+}
+
+/* Footer */
+.signup-footer {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #777;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .signup-card {
+        padding: 20px;
+    }
+
+    .signup-title {
+        font-size: 20px;
+    }
+
+    .signup-button {
+        font-size: 14px;
+    }
+}
+
+
+/* Login Container */
+.login-container {
+    background: radial-gradient(circle, rgba(33, 150, 243, 1) 0%, rgba(63, 81, 181, 1) 50%, rgba(13, 71, 161, 1) 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Floating Gradient Circles for Login */
+.login-container::before,
+.login-container::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+}
+
+.login-container::before {
+    width: 350px;
+    height: 350px;
+    top: -150px;
+    left: -150px;
+    animation: float 10s infinite alternate;
+}
+
+.login-container::after {
+    width: 450px;
+    height: 450px;
+    bottom: -200px;
+    right: -200px;
+    animation: float2 10s infinite alternate;
+}
+
+/* Login Card */
+.login-card {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Title */
+.login-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #2196F3;
+}
+
+/* Form */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Labels */
+.login-label {
+    font-size: 18px;
+    color: #333;
+    display: flex;
+    width: 100%;
+    text-align: left;
+    font-weight: 700;
+}
+
+/* Input Fields */
+.login-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.login-input:focus {
+    border-color: #2196F3;
+    box-shadow: 0 0 8px rgba(33, 150, 243, 0.4);
+}
+
+/* Button */
+.login-button {
+    background: #2196F3;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.login-button:hover {
+    background: #0D47A1;
+}
+
+/* Footer */
+.login-footer {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #777;
+}
+
+/* Responsive Design for Login */
+@media (max-width: 600px) {
+    .login-card {
+        padding: 20px;
+    }
+
+    .login-title {
+        font-size: 20px;
+    }
+
+    .login-button {
+        font-size: 14px;
+    }
+}
+
+
+/* General Dashboard Styles */
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 20px;
+    background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    color: #333;
+    min-height: 100vh;
+}
+
+/* Section Wrappers for Income, Expenses, and Investments */
+.section-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Row Styles for Cards and Charts/Tables */
+.row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.row.full-width {
+    flex-direction: row;
+    gap: 20px;
+}
+
+.income-input, .expense-input, .investment-input {
+    flex: 2;
+}
+
+/* Flash Message Styles */
+.flash-message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.flash-message.error {
+    background-color: #ffe6e6;
+    color: #ff5252;
+    border: 1px solid #ff1744;
+}
+
+.flash-message.success {
+    background-color: #e6ffe6;
+    color: #4caf50;
+    border: 1px solid #388e3c;
+}
+
+/* Card Style */
+.income-input, .income-table, .expense-input, .expense-table, .investment-input, .investment-table {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.income-input:hover, .income-table:hover, .expense-input:hover, .expense-table:hover, .investment-input:hover, .investment-table:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.4);
+}
+
+.income-input h2, .income-table h2, .expense-input h2, .expense-table h2, .investment-input h2, .investment-table h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #007bff;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+    border-bottom: 4px solid #007bff;
+    padding-bottom: 10px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    margin-top: 15px;
+    overflow: hidden;
+    border-radius: 15px;
+    background: #ffffff;
+    transition: box-shadow 0.4s;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+table:hover {
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+}
+
+thead {
+    background: linear-gradient(to right, #007bff, #00c6ff);
+    color: black;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+th, td {
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 17px;
+    background: #f7f9fc;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+tbody tr {
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+tbody tr:hover {
+    background: #e3f2fd;
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+td button {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 25px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.4s ease, transform 0.3s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+td button:hover {
+    background: #0056b3;
+    transform: translateY(-4px);
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+input, select {
+    padding: 15px 20px;
+    border: 2px solid #ddd;
+    border-radius: 15px;
+    font-size: 17px;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+    background: #ffffff;
+    color: #333;
+    width: 80%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+}
+
+button {
+    background: linear-gradient(to right, #66a6ff, #007bff);
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    padding: 18px 30px;
+    transition: background 0.3s ease, transform 0.4s ease;
+    width: 100%;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background: linear-gradient(to right, #007bff, #0056b3);
+    transform: translateY(-5px);
+}
+
+/* Chart Section Styling */
+.chart-card {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.chart-card h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+    border-bottom: 4px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .income-input, .income-table, .expense-input, .expense-table, .investment-input, .investment-table {
+        padding: 25px;
+    }
+}
+
+
+
+
+/* Flash Message Styles */
+.flashes {
+    list-style-type: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.flashes li {
+    margin: 0.5rem 0;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.flashes li.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flashes li.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.flashes li.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 15px;
+    }
+}

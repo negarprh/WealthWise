@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+<div class="welcome-container">
+    <div class="welcome-card">
+        <h1 class="welcome-title">Welcome to Finance Tracker</h1>
+        <p class="welcome-subtitle">Manage your expenses, income, and investments with ease.</p>
+        <div class="welcome-buttons">
+            <a href="{{ url_for('login') }}" class="welcome-button login-button">Log In</a>
+            <a href="{{ url_for('signup') }}" class="welcome-button signup-button">Sign Up</a>
+        </div>
+        <p class="welcome-footer">&copy; 2024 Finance Tracker. All rights reserved.</p>
+    </div>
+</div>
+{% endblock %}

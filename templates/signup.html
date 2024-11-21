@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="signup-container">
+    <div class="signup-card">
+        <h2 class="signup-title">Create an Account</h2>
+        <form method="POST" action="/signup" class="signup-form">
+            <!-- Username -->
+            <div class="form-group">
+                <label for="username" class="signup-label">Username:</label>
+                <input type="text" id="username" name="username" class="signup-input" placeholder="Enter your username" required>
+            </div>
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password" class="signup-label">Password:</label>
+                <input type="password" id="password" name="password" class="signup-input" placeholder="Enter your password" required>
+            </div>
+            <!-- Button -->
+            <button type="submit" class="signup-button">Sign Up</button>
+        </form>
+        <p class="signup-footer">&copy; 2024 Finance Tracker. All rights reserved.</p>
+    </div>
+</div>
+{% endblock %}

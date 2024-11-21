@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-card">
+        <h2 class="login-title">Welcome Back!</h2>
+        <form method="POST" action="/login" class="login-form">
+            <!-- Username -->
+            <div class="form-group">
+                <label for="username" class="login-label">Username:</label>
+                <input type="text" id="username" name="username" class="login-input" placeholder="Enter your username" required>
+            </div>
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password" class="login-label">Password:</label>
+                <input type="password" id="password" name="password" class="login-input" placeholder="Enter your password" required>
+            </div>
+            <!-- Button -->
+            <button type="submit" class="login-button">Login</button>
+        </form>
+        <p class="login-footer">&copy; 2024 Finance Tracker. All rights reserved.</p>
+    </div>
+</div>
+{% endblock %}

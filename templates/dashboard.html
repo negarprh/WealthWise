@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard">
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-messages">
+          {% for category, message in messages %}
+            <div class="flash-message {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Input and Table for Income -->
+    <div class="section-wrapper">
+        <div class="row">
+            <!-- Input Income Section -->
+            <div class="card income-input">
+                <h2>Input Income</h2>
+                <form method="POST" action="/add-income">
+                    <label for="income">Monthly Income:</label>
+                    <input type="number" id="income" name="income" placeholder="Enter income" required>
+                    <label for="month">Month:</label>
+                    <input type="month" id="month" name="month" required>
+                    <button type="submit">Add Income</button>
+                </form>
+            </div>
+
+            <!-- Income Table -->
+            <div class="card income-table">
+                <h2>Income Overview</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Income</th>
+                            <th>Date Added</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for entry in income %}
+                        <tr>
+                            <td>{{ entry[2] }}</td>
+                            <td>{{ entry[1] }}</td>
+                            <td>{{ entry[3] }}</td>
+                            <td>
+                                <form method="POST" action="{{ url_for('delete_income', income_id=entry[0]) }}">
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Input for Expenses -->
+        <div class="row full-width">
+            <div class="card expense-input">
+                <h2>Add Expense</h2>
+                <form method="POST" action="/add-expense">
+                    <label for="category">Category:</label>
+                    <select id="category" name="category" required>
+                        <option value="Food">Food</option>
+                        <option value="Rent">Rent</option>
+                        <option value="Utilities">Utilities</option>
+                        <option value="Transportation">Transportation</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <label for="amount">Amount:</label>
+                    <input type="number" id="amount" name="amount" placeholder="Enter amount" required>
+                    <button type="submit">Add Expense</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Expense Table and Chart -->
+        <div class="row">
+            <div class="card expense-table">
+                <h2>Expenses</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for expense in expenses %}
+                        <tr>
+                            <td>{{ expense[1] }}</td>
+                            <td>{{ expense[2] }}</td>
+                            <td>{{ expense[3] }}</td>
+                            <td>
+                                <form method="POST" action="{{ url_for('delete_expense', expense_id=expense[0]) }}">
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="chart-card expense-chart">
+                <h2>Expense Chart</h2>
+                <img src="{{ url_for('static', filename='expense_chart.png') }}" alt="Expense Chart">
+            </div>
+        </div>
+
+        <!-- Input for Investment -->
+        <div class="row full-width">
+            <div class="card investment-input">
+                <h2>Investment Portfolio</h2>
+                <form method="POST" action="/add-investment">
+                    <label for="ticker">Stock Ticker:</label>
+                    <input type="text" id="ticker" name="ticker" placeholder="e.g., AAPL" required>
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" placeholder="Number of Shares" required>
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" name="price" placeholder="Price per Share" required>
+                    <button type="submit">Add Investment</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Investment Table and Chart -->
+        <div class="row">
+            <div class="card investment-table">
+                <h2>Investment Portfolio</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Stock Ticker</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total Value</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for investment in investments %}
+                        <tr>
+                            <td>{{ investment[1] }}</td>
+                            <td>{{ investment[2] }}</td>
+                            <td>{{ investment[3] }}</td>
+                            <td>{{ investment[4] }}</td>
+                            <td>{{ investment[5] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="chart-card investment-chart">
+                <h2>Investment Chart</h2>
+                <img src="{{ url_for('static', filename='investment_chart.png') }}" alt="Investment Chart">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Link to charts.js -->
+<script src="{{ url_for('static', filename='charts.js') }}"></script>
+{% endblock %}
