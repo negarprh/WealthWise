@@ -2,10 +2,22 @@
 
 {% block title %}Login{% endblock %}
 
+
 {% block content %}
 <div class="login-container">
     <div class="login-card">
         <h2 class="login-title">Welcome Back!</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
         <form method="POST" action="/login" class="login-form">
             <!-- Username -->
             <div class="form-group">
@@ -20,6 +32,8 @@
             <!-- Button -->
             <button type="submit" class="login-button">Login</button>
         </form>
+        <br>
+        <a href="{{ url_for('signup')}}">Don't have an account? Sign Up</a>
         <p class="login-footer">&copy; 2024 Finance Tracker. All rights reserved.</p>
     </div>
 </div>

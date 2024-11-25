@@ -2,10 +2,22 @@
 
 {% block title %}Sign Up{% endblock %}
 
+
 {% block content %}
 <div class="signup-container">
     <div class="signup-card">
         <h2 class="signup-title">Create an Account</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
         <form method="POST" action="/signup" class="signup-form">
             <!-- Username -->
             <div class="form-group">
@@ -20,6 +32,8 @@
             <!-- Button -->
             <button type="submit" class="signup-button">Sign Up</button>
         </form>
+        <br>
+        <a href="{{ url_for('login')}}">Already have an account? Log In</a>
         <p class="signup-footer">&copy; 2024 Finance Tracker. All rights reserved.</p>
     </div>
 </div>
