@@ -181,15 +181,19 @@ def add_expense():
 
 # Delete expense
 @app.route('/delete-expense/<int:expense_id>', methods=['POST'])
+@login_required
 def delete_expense(expense_id):
     try:
+        user_id = current_user.id
         with sqlite3.connect('finance_tracker.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("DELETE FROM expenses WHERE id = ?", (expense_id,))
+            cursor.execute("DELETE FROM expenses WHERE id = ? AND user_id = ?", (expense_id, user_id))
             conn.commit()
+        flash('Expense deleted successfully!', 'success')
     except Exception as e:
-        flash(f"Error deleting expense: {e}", "error")
+        flash(f"Error deleting expense: {e}", 'error')
     return redirect(url_for('dashboard'))
+
 
 
 
@@ -228,11 +232,13 @@ def delete_income(income_id):
 
 # Add investment
 @app.route('/add-investment', methods=['POST'])
+@login_required
 def add_investment():
     try:
         ticker = request.form['ticker'].upper()
         quantity = int(request.form['quantity'])
         price = float(request.form['price'])
+        user_id = current_user.id
 
         # Fetch stock price
         stock = yf.Ticker(ticker)
@@ -255,15 +261,14 @@ def add_investment():
         # Add to database
         with sqlite3.connect('finance_tracker.db') as conn:
             cursor = conn.cursor()
-            cursor.execute("INSERT INTO investments (ticker, quantity, price, total) VALUES (?, ?, ?, ?)",
-                           (ticker, quantity, price, total_value))
+            cursor.execute("INSERT INTO investments (user_id, ticker, quantity, price, total) VALUES (?, ?, ?, ?, ?)",
+                           (user_id, ticker, quantity, price, total_value))
             conn.commit()
 
         flash('Investment added successfully!', 'success')
     except Exception as e:
         flash(f"Error adding investment: {e}", "error")
     return redirect(url_for('dashboard'))
-
 
 # Generate expense chart function
 def generate_expense_chart(user_id):

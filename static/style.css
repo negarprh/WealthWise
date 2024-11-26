@@ -1,11 +1,12 @@
 /* General Styles */
 *{
-      font-family: "Open Sans", sans-serif !important;
+      font-family: "Poppins", sans-serif;
 }
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-x: hidden;
 
 }
 
@@ -15,32 +16,34 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to bottom, #1e3c72, #2a5298);
+    background: #232323;
     margin: 0;
     font-family: 'Poppins', sans-serif;
+    position: relative;
 }
 
 .welcome-card {
     text-align: center;
-    background: #ffffff;
+    background: black;
     padding: 3rem;
     border-radius: 15px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
     max-width: 500px;
     animation: fadeIn 1s ease-in-out;
+    z-index: 2;
 }
 
 .welcome-title {
     font-size: 3rem;
     margin-bottom: 0.8rem;
-    color: #3f51b5;
+    color: #A3FDA1;
     font-weight: 700;
 }
 
 .welcome-subtitle {
     font-size: 1.5rem;
     margin-bottom: 2rem;
-    color: #d1e8ff;
+    color: #bcbcbc;
     line-height: 1.5;
 }
 
@@ -72,52 +75,86 @@ body {
 }
 
 .welcome-button.signup-button {
-    background-color: #2980b9;
+    background-color: #5D5D5D;
 }
 
 .welcome-button.signup-button:hover {
-    background-color: #2471a3;
+    background-color: #313232;
     transform: translateY(-3px);
 }
 
 .welcome-footer {
     font-size: 1rem;
-    color: #d1e8ff;
+    color: #bcbcbc;
     margin-top: 1rem;
+    z-index: 2;
 }
 
-/* Animation for card appearance */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Floating Gradient Circles */
+.welcome-container::before,
+.welcome-container::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+    z-index: 1;
+
 }
+
+.welcome-container::before {
+    width: 300px;
+    height: 300px;
+    top: -100px;
+    left: -100px;
+    animation-delay: 0s;
+    animation: float 18s infinite alternate;
+}
+
+.welcome-container::after {
+    width: 400px;
+    height: 400px;
+    bottom: -150px;
+    right: -150px;
+    animation-delay: 0s;
+     animation: float2 18s infinite alternate;
+}
+
+
+
+
+
+/*!* Animation for card appearance *!*/
+/*@keyframes fadeIn {*/
+/*    from { opacity: 0; transform: translateY(-20px); }*/
+/*    to { opacity: 1; transform: translateY(0); }*/
+/*}*/
 
 /* Responsive Styling */
-@media (max-width: 600px) {
-    .welcome-card {
-        padding: 2rem;
-        width: 90%;
-    }
-    .welcome-title {
-        font-size: 2.5rem;
-    }
-    .welcome-subtitle {
-        font-size: 1.2rem;
-    }
-    .welcome-button {
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
-    }
-}
+/*@media (max-width: 600px) {*/
+/*    .welcome-card {*/
+/*        padding: 2rem;*/
+/*        width: 90%;*/
+/*    }*/
+/*    .welcome-title {*/
+/*        font-size: 2.5rem;*/
+/*    }*/
+/*    .welcome-subtitle {*/
+/*        font-size: 1.2rem;*/
+/*    }*/
+/*    .welcome-button {*/
+/*        padding: 0.8rem 1.5rem;*/
+/*        font-size: 1rem;*/
+/*    }*/
+/*}*/
 
 /* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(90deg, #3f51b5, #2196f3);
+    background: #5D5D5D;
     padding: 15px 20px;
-    color: white;
+    color: #A3FDA1;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: sticky;
     top: 0;
@@ -150,7 +187,7 @@ body {
 
 .navbar-links a {
     text-decoration: none;
-    color: white;
+    color: #A3FDA1;
     font-size: 16px;
     font-weight: 500;
     padding: 5px 10px;
@@ -160,12 +197,12 @@ body {
 
 .navbar-links a:hover {
     background: white;
-    color: #3f51b5;
+    color: #022901;
 }
 
 /* Footer */
 footer {
-    background: linear-gradient(90deg, #2196f3, #3f51b5);
+    background: #5D5D5D;
     color: white;
     text-align: center;
     padding: 20px 0;
@@ -266,9 +303,7 @@ footer:hover {
     }
 }
 
-{
 
-}
 /* Signup Card */
 .signup-card {
     background: white;
