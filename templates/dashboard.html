@@ -143,6 +143,7 @@
                             <th>Price</th>
                             <th>Total Value</th>
                             <th>Date</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -153,6 +154,11 @@
                             <td>{{ investment[3] }}</td>
                             <td>{{ investment[4] }}</td>
                             <td>{{ investment[5] }}</td>
+                            <td>
+                                <form method="POST" action="{{ url_for('delete_investment', investment_id=investment[0]) }}">
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>

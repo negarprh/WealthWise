@@ -8,6 +8,7 @@ body {
     box-sizing: border-box;
     overflow-x: hidden;
 
+
 }
 
 /* Welcome Page Styling */
@@ -15,7 +16,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 88vh;
     background: #232323;
     margin: 0;
     font-family: 'Poppins', sans-serif;
@@ -24,7 +25,7 @@ body {
 
 .welcome-card {
     text-align: center;
-    background: black;
+    background: rgba(0, 0, 0, 0.68);
     padding: 3rem;
     border-radius: 15px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
@@ -91,19 +92,27 @@ body {
 }
 
 /* Floating Gradient Circles */
-.welcome-container::before,
-.welcome-container::after {
+.welcome-container::before{
     content: '';
-    position: absolute;
+
     border-radius: 50%;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
-    z-index: 1;
-
 }
+
+.welcome-container::after{
+    content: '';
+
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+}
+
+
+
 
 .welcome-container::before {
     width: 300px;
     height: 300px;
+    position: absolute;
     top: -100px;
     left: -100px;
     animation-delay: 0s;
@@ -113,8 +122,10 @@ body {
 .welcome-container::after {
     width: 400px;
     height: 400px;
-    bottom: -150px;
+    position: absolute;
+    bottom: -50px;
     right: -150px;
+
     animation-delay: 0s;
      animation: float2 18s infinite alternate;
 }
@@ -209,6 +220,7 @@ footer {
     font-size: 14px;
     font-weight: 400;
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+
 }
 
 footer p {
@@ -217,7 +229,8 @@ footer p {
 
 /* Subtle Hover Effect for Footer */
 footer:hover {
-    background: linear-gradient(90deg, #1e88e5, #283593);
+    color: #A3FDA1;
+    background-color: rgba(0, 0, 0, 0.9);
     transition: background 0.5s ease-in-out;
 }
 
@@ -242,8 +255,8 @@ footer:hover {
 /* Signup Container */
 .signup-container {
 
-    background: radial-gradient(circle, rgba(63, 81, 181, 1) 0%, rgba(33, 150, 243, 1) 50%, rgba(3, 169, 244, 1) 100%);
-    min-height: 100vh;
+    background: #232323;
+    min-height: 88vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -306,14 +319,14 @@ footer:hover {
 
 /* Signup Card */
 .signup-card {
-    background: white;
-    padding: 30px 40px;
+    background: rgba(0, 0, 0, 0.67);
+       padding: 40px 60px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 400px;
     text-align: center;
-    z-index: 1;
+
     position: relative;
     overflow: hidden;
 }
@@ -321,9 +334,9 @@ footer:hover {
 /* Title */
 .signup-title {
     margin-bottom: 20px;
-    font-size: 24px;
+    font-size: 34px;
     font-weight: bold;
-    color: #3f51b5;
+    color: #A3FDA1;
 }
 
 /* Form */
@@ -337,7 +350,7 @@ footer:hover {
 /* Labels */
 .signup-label {
     font-size: 18px;
-    color: #333;
+    color: #8f8e8e;
     display: flex;
     width: 100%;
     text-align: left;
@@ -347,35 +360,45 @@ footer:hover {
 /* Input Fields */
 .signup-input {
     width: 100%;
-    padding: 10px;
+    padding: 10px 0px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
     transition: all 0.3s ease;
+     &::placeholder{
+        padding: 0px 10px;
+    }
 }
 
 .signup-input:focus {
-    border-color: #3f51b5;
-    box-shadow: 0 0 8px rgba(63, 81, 181, 0.4);
+   border: 3px solid #22971f;
+
 }
 
 /* Button */
 .signup-button {
-    background: #3f51b5;
+     background: #27ae60;
     color: white;
-    padding: 12px;
-    width: 420px;
+
+       padding: 12px;
+    margin: 15px 0px;
+    width: 100%;
     border: none ;
     border-radius: 5px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition:1s;
     text-align: center;
 }
 
 .signup-button:hover {
-    background: #283593;
+    background: #229954;
+
+}
+.taga{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 /* Footer */
@@ -403,8 +426,8 @@ footer:hover {
 
 /* Login Container */
 .login-container {
-    background: radial-gradient(circle, rgba(33, 150, 243, 1) 0%, rgba(63, 81, 181, 1) 50%, rgba(13, 71, 161, 1) 100%);
-    min-height: 100vh;
+     background: rgba(0, 0, 0, 0.87);
+    min-height: 88vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -439,14 +462,13 @@ footer:hover {
 
 /* Login Card */
 .login-card {
-    background: white;
-    padding: 30px 40px;
+    background: rgba(0, 0, 0, 0.77);
+    padding: 40px 60px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 400px;
     text-align: center;
-    z-index: 1;
     position: relative;
     overflow: hidden;
 }
@@ -454,22 +476,22 @@ footer:hover {
 /* Title */
 .login-title {
     margin-bottom: 20px;
-    font-size: 24px;
+    font-size: 34px;
     font-weight: bold;
-    color: #2196F3;
+      color: #A3FDA1;
 }
 
 /* Form */
 .login-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    /*gap: 15px;*/
 }
 
 /* Labels */
 .login-label {
     font-size: 18px;
-    color: #333;
+    color: #8f8e8e;
     display: flex;
     width: 100%;
     text-align: left;
@@ -479,11 +501,15 @@ footer:hover {
 /* Input Fields */
 .login-input {
     width: 100%;
-    padding: 10px;
+    padding: 10px 0px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
     transition: all 0.3s ease;
+    &::placeholder{
+        padding: 0px 10px;
+    }
+
 }
 
 .login-input:focus {
@@ -493,9 +519,10 @@ footer:hover {
 
 /* Button */
 .login-button {
-    background: #2196F3;
+    background: #27ae60;
     color: white;
     padding: 12px;
+    margin: 10px 0px;
     width: 100%;
     border: none;
     border-radius: 5px;
@@ -506,7 +533,7 @@ footer:hover {
 }
 
 .login-button:hover {
-    background: #0D47A1;
+  background: #229954;
 }
 
 /* Footer */
@@ -531,15 +558,14 @@ footer:hover {
     }
 }
 
-
 /* General Dashboard Styles */
 .dashboard {
     display: flex;
     flex-direction: column;
     gap: 40px;
     padding: 20px;
-    background: linear-gradient(135deg, #89f7fe, #66a6ff);
-    color: #333;
+    background: #2b2b2b; /* Slightly lighter than pure black to soften the look */
+    color: #bcbcbc; /* Light text for readability */
     min-height: 100vh;
 }
 
@@ -591,12 +617,12 @@ footer:hover {
 
 /* Card Style */
 .income-input, .income-table, .expense-input, .expense-table, .investment-input, .investment-table {
-    background: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
-    padding: 30px;
+    background: #1e1e1e; /* A bit lighter than black to differentiate from the dashboard background */
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    padding: 25px;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-    color: #333;
+    color: #e0e0e0; /* Light text for better contrast */
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -610,72 +636,92 @@ footer:hover {
 .income-input h2, .income-table h2, .expense-input h2, .expense-table h2, .investment-input h2, .investment-table h2 {
     font-size: 28px;
     font-weight: bold;
-    color: #007bff;
+    color: #A3FDA1; /* Light green for headings */
     text-transform: uppercase;
     letter-spacing: 1.5px;
     margin-bottom: 15px;
-    border-bottom: 4px solid #007bff;
+    border-bottom: 2px solid #A3FDA1; /* Light green border for a sleek look */
     padding-bottom: 10px;
 }
 
-/* Table Styles */
+/* Enhanced Table Styles */
 table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 15px;
+    border-collapse: collapse; /* Make borders collapse to create a unified look */
     margin-top: 15px;
     overflow: hidden;
-    border-radius: 15px;
-    background: #ffffff;
+    border-radius: 12px;
+    background: #1e1e1e; /* Slightly lighter to create contrast */
     transition: box-shadow 0.4s;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 table:hover {
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
 thead {
-    background: linear-gradient(to right, #007bff, #00c6ff);
-    color: black;
+    background: #27ae60; /* Consistent green for headers */
+    color: #ffffff;
     text-transform: uppercase;
     font-size: 18px;
+    font-weight: bold;
+    border-bottom: 3px solid #229954; /* Added bottom border for separation */
 }
 
 th, td {
-    padding: 20px;
+    padding: 15px 20px; /* Added padding for more space and better readability */
     text-align: left;
-    border-bottom: 1px solid #ddd;
-    font-size: 17px;
-    background: #f7f9fc;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid #444; /* Subtle gray lines to add separation between rows */
+    font-size: 16px;
+    color: #e0e0e0;
+    background: rgba(255, 255, 255, 0.05); /* Very subtle white tint to add depth */
 }
 
 tbody tr {
     transition: background 0.3s ease, transform 0.3s ease;
 }
 
+tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.03); /* Alternating row color for better readability */
+}
+
 tbody tr:hover {
-    background: #e3f2fd;
-    transform: translateY(-5px);
+    background: rgba(39, 174, 96, 0.1); /* Highlight row with light green on hover */
+    transform: translateY(-3px);
     cursor: pointer;
 }
 
 td button {
-    background: #007bff;
-    color: white;
+    background: #27ae60;
+    color: #ffffff;
     border: none;
-    border-radius: 12px;
-    padding: 10px 25px;
+    border-radius: 8px;
+    padding: 8px 20px;
     font-size: 14px;
     cursor: pointer;
     transition: background 0.4s ease, transform 0.3s;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 td button:hover {
-    background: #0056b3;
-    transform: translateY(-4px);
+    background: #229954;
+    transform: translateY(-3px);
+}
+
+/* Improved Table Header and Footer Borders */
+th {
+    border-top: 1px solid #444; /* Slight border to define header more clearly */
+}
+
+tfoot {
+    background: #1e1e1e; /* Footer same as card background */
+    border-top: 3px solid #229954; /* Thicker border for better visual separation */
+}
+
+/* Refined Shadows and Borders */
+table, th, td {
+    border: 1px solid #333; /* Refined border color for a polished and consistent appearance */
 }
 
 /* Form Styles */
@@ -688,53 +734,53 @@ form {
 form label {
     font-size: 18px;
     font-weight: bold;
-    color: #333;
+    color: #e0e0e0; /* Consistent text color */
 }
 
 input, select {
     padding: 15px 20px;
-    border: 2px solid #ddd;
-    border-radius: 15px;
+    border: 2px solid #444; /* Dark border to blend in */
+    border-radius: 10px;
     font-size: 17px;
     transition: border 0.3s ease, box-shadow 0.3s ease;
-    background: #ffffff;
-    color: #333;
-    width: 80%;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+    background: #2c2c2c; /* Dark input background for consistency */
+    color: #e0e0e0;
+    width: 96%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
 
 input:focus, select:focus {
     outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+    border-color: #27ae60;
+    box-shadow: 0 0 15px rgba(39, 174, 96, 0.5);
 }
 
 button {
-    background: linear-gradient(to right, #66a6ff, #007bff);
+    background: #27ae60; /* Matching button style */
     color: #ffffff;
     font-weight: bold;
     border: none;
     cursor: pointer;
-    border-radius: 15px;
+    border-radius: 10px;
     padding: 18px 30px;
     transition: background 0.3s ease, transform 0.4s ease;
     width: 100%;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
 button:hover {
-    background: linear-gradient(to right, #007bff, #0056b3);
+    background: #229954;
     transform: translateY(-5px);
 }
 
 /* Chart Section Styling */
 .chart-card {
-    background: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
-    padding: 30px;
+    background: #1e1e1e; /* Slightly lighter than the background for distinction */
+    border-radius: 15px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+    padding: 50px 200px;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-    color: #333;
+    color: #e0e0e0;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -743,9 +789,9 @@ button:hover {
 .chart-card h2 {
     font-size: 28px;
     font-weight: bold;
-    color: #007bff;
+    color: #A3FDA1; /* Light green for headings */
     text-align: center;
-    border-bottom: 4px solid #007bff;
+    border-bottom: 2px solid #A3FDA1;
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
@@ -757,10 +803,9 @@ button:hover {
     }
 
     .income-input, .income-table, .expense-input, .expense-table, .investment-input, .investment-table {
-        padding: 25px;
+        padding: 20px;
     }
 }
-
 
 
 

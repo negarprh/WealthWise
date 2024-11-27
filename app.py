@@ -270,13 +270,27 @@ def add_investment():
         flash(f"Error adding investment: {e}", "error")
     return redirect(url_for('dashboard'))
 
+@app.route('/delete-investment/<int:investment_id>', methods=['POST'])
+@login_required
+def delete_investment(investment_id):
+    try:
+        user_id = current_user.id
+        with sqlite3.connect('finance_tracker.db') as conn:
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM investments WHERE id = ? AND user_id = ?", (investment_id, user_id))
+            conn.commit()
+        flash('Investment deleted successfully!', 'success')
+    except Exception as e:
+        flash(f"Error deleting Investment: {e}", 'error')
+    return redirect(url_for('dashboard'))
+
 # Generate expense chart function
 def generate_expense_chart(user_id):
     with sqlite3.connect('finance_tracker.db') as conn:
         df = pd.read_sql_query("SELECT category, SUM(amount) as total FROM expenses WHERE user_id = ? GROUP BY category", conn, params=(user_id,))
 
     plt.figure(figsize=(8, 6))
-    plt.bar(df['category'], df['total'], color='blue')
+    plt.bar(df['category'], df['total'], color='#A3FDA1')
     plt.title('Expenses by Category')
     plt.xlabel('Category')
     plt.ylabel('Total Expense')

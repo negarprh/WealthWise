@@ -11,8 +11,8 @@ const monthlyChart = new Chart(ctx, {
         datasets: [{
             label: 'Monthly Expenses',
             data: data,
-            backgroundColor: 'rgba(63, 81, 181, 0.2)',
-            borderColor: 'rgba(63, 81, 181, 1)',
+            backgroundColor: 'rgba(5,64,19,0.2)',
+            borderColor: 'rgb(66,191,4)',
             borderWidth: 2
         }]
     },
