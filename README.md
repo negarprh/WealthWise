@@ -114,9 +114,9 @@ This project is licensed under the MIT License. Feel free to use and modify it a
 
 ## 💬 Contact
 Feel free to reach out for suggestions or collaborations:
-- **Email**: [your.email@example.com](mailto:your.email@example.com)
-- **LinkedIn**: [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
-- **GitHub**: [Your GitHub Profile](https://github.com/yourusername)
+- **Email**: [your.email@example.com](mailto:negarpr@hotmail.com)
+- **LinkedIn**: [Your LinkedIn Profile]([https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/negar-pirasteh/))
+- **GitHub**: [Your GitHub Profile]([https://github.com/yourusername](https://github.com/negarprh))
 
 ---
 
