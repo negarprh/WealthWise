@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session, request, jsonify
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 import yfinance as yf
@@ -6,17 +6,25 @@ import pandas as pd
 import os
 import matplotlib.pyplot as plt
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from functools import wraps
+from datetime import timedelta
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 
 
+
+
 app = Flask(__name__)
-app.secret_key = '123456789'
+
+app.config['SECRET_KEY'] = '123456789'
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=15)
+BLOCKED_IPS = {}
 
 # Initialize Flask-Login
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
+login_manager.session_protection = "strong"
 
 # User class for Flask-Login
 class User(UserMixin):
@@ -80,7 +88,18 @@ init_db()
 # Welcome route
 @app.route('/')
 def welcome():
-    return render_template('welcome.html')  # A simple page with "Login" and "Sign-Up" buttons
+    if current_user.is_authenticated:  # Check if the user is logged in
+        return redirect(url_for('dashboard'))
+    return render_template('welcome.html') # A simple page with "Login" and "Sign-Up" buttons
+
+# Block Ip
+def check_ip(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        if request.remote_addr in BLOCKED_IPS:
+            return jsonify({'error': 'blocked'}), 403
+        return f(*args, **kwargs)
+    return wrapper
 
 # Sign-Up route
 @app.route('/signup', methods=['GET', 'POST'])
@@ -112,12 +131,19 @@ def login():
             if user and check_password_hash(user[1], password):
                 user_obj = User(user[0], username)
                 login_user(user_obj)
+                session.permanent = True
                 flash('Login successful!', 'success')
                 return redirect(url_for('dashboard'))
             else:
                 flash('Invalid credentials. Please try again.', 'error')
     return render_template('login.html')
 
+
+
+def session_management():
+    # Check if the user is logged in and the session has expired
+    if current_user.is_authenticated:
+        session.modified = True
 
 # Logout route
 @app.route('/logout')
@@ -162,6 +188,8 @@ def dashboard():
 
 
 
+
+
 # Add expense
 @app.route('/add-expense', methods=['POST'])
 @login_required
@@ -177,7 +205,7 @@ def add_expense():
         flash('Expense added successfully!', 'success')
     except Exception as e:
         flash(f"Error adding expense: {e}", "error")
-    return redirect(url_for('dashboard'))
+    return redirect(url_for('dashboard') + '#expense-section')
 
 # Delete expense
 @app.route('/delete-expense/<int:expense_id>', methods=['POST'])
@@ -192,7 +220,7 @@ def delete_expense(expense_id):
         flash('Expense deleted successfully!', 'success')
     except Exception as e:
         flash(f"Error deleting expense: {e}", 'error')
-    return redirect(url_for('dashboard'))
+    return redirect(url_for('dashboard') + '#expense-section')
 
 
 
@@ -213,7 +241,7 @@ def add_income():
         flash('Income added successfully!', 'success')
     except Exception as e:
         flash(f"Error adding income: {e}", 'error')
-    return redirect(url_for('dashboard'))
+    return redirect(url_for('dashboard') + '#income-section')
 
 # Delete income
 @app.route('/delete-income/<int:income_id>', methods=['POST'])
@@ -228,7 +256,7 @@ def delete_income(income_id):
         flash('Income deleted successfully!', 'success')
     except Exception as e:
         flash(f"Error deleting income: {e}", 'error')
-    return redirect(url_for('dashboard'))
+    return redirect(url_for('dashboard')+ '#income-section')
 
 # Add investment
 @app.route('/add-investment', methods=['POST'])
@@ -268,7 +296,7 @@ def add_investment():
         flash('Investment added successfully!', 'success')
     except Exception as e:
         flash(f"Error adding investment: {e}", "error")
-    return redirect(url_for('dashboard'))
+    return redirect(url_for('dashboard') + '#investment-section')
 
 @app.route('/delete-investment/<int:investment_id>', methods=['POST'])
 @login_required
@@ -282,7 +310,7 @@ def delete_investment(investment_id):
         flash('Investment deleted successfully!', 'success')
     except Exception as e:
         flash(f"Error deleting Investment: {e}", 'error')
-    return redirect(url_for('dashboard'))
+    return redirect(url_for('dashboard') + '#investment-section')
 
 # Generate expense chart function
 def generate_expense_chart(user_id):
@@ -307,6 +335,29 @@ def generate_investment_chart(user_id):
     plt.title('Investment Portfolio Distribution')
     plt.savefig('static/investment_chart.png')
     plt.close()
+
+
+def fetch_stock_data(ticker):
+    try:
+        stock = yf.Ticker(ticker)
+        data = stock.history(period="1mo", interval="1d")  # 1 month of daily data
+        data = data.reset_index()  # Reset index to make 'Date' a column
+        data['Date'] = data['Date'].dt.strftime('%Y-%m-%d')  # Format date as string
+        return data[['Date', 'Close']].to_dict(orient='records')  # Return date and close price
+    except Exception as e:
+        raise ValueError(f"Error fetching stock data: {e}")
+
+
+@app.route('/get-stock-data/<ticker>', methods=['GET'])
+@login_required
+def get_stock_data(ticker):
+    try:
+        data = fetch_stock_data(ticker)  # Call the function above
+        return jsonify({'success': True, 'data': data})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)})
+
+
 
 
 if __name__ == "__main__":

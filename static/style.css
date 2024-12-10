@@ -1,4 +1,8 @@
 /* General Styles */
+html {
+    scroll-behavior: smooth;
+}
+
 *{
       font-family: "Poppins", sans-serif;
 }
@@ -593,14 +597,25 @@ footer:hover {
 }
 
 /* Flash Message Styles */
-.flash-message {
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
+.flash-messages {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeOut 3s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 .flash-message.error {
@@ -850,5 +865,107 @@ button:hover {
 
     .card {
         padding: 15px;
+    }
+}
+
+
+/* Navbar */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .navbar-title {
+        margin-bottom: 10px;
+    }
+}
+
+/* Welcome Page */
+@media (max-width: 600px) {
+    .welcome-card {
+        padding: 2rem;
+        width: 90%;
+    }
+
+    .welcome-title {
+        font-size: 2.5rem;
+    }
+
+    .welcome-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .welcome-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Signup and Login Pages */
+@media (max-width: 600px) {
+    .signup-card, .login-card {
+        padding: 20px;
+    }
+
+    .signup-title, .login-title {
+        font-size: 20px;
+    }
+
+    .signup-button, .login-button {
+        font-size: 14px;
+    }
+}
+
+/*.stock-chart {*/
+/*    max-width: 600px;*/
+/*    margin: 0 auto;*/
+/*    padding: 20px;*/
+/*}*/
+
+
+
+
+/* Responsive */
+/* Dashboard */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .income-input, .expense-input, .investment-input,
+    .income-table, .expense-table, .investment-table {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    table th, table td {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+
+    form label, input, select {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+/* Chart Cards */
+@media (max-width: 768px) {
+    .chart-card {
+        padding: 20px;
+        width: 100%;
     }
 }

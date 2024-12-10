@@ -15,12 +15,12 @@
     {% endwith %}
 
     <!-- Input and Table for Income -->
-    <div class="section-wrapper">
+    <div class="section-wrapper" id="income-section">
         <div class="row">
             <!-- Input Income Section -->
             <div class="card income-input">
                 <h2>Input Income</h2>
-                <form method="POST" action="/add-income">
+                <form method="POST" action="/add-income#income-section">
                     <label for="income">Monthly Income:</label>
                     <input type="number" id="income" name="income" placeholder="Enter income" required>
                     <label for="month">Month:</label>
@@ -48,7 +48,7 @@
                             <td>{{ entry[1] }}</td>
                             <td>{{ entry[3] }}</td>
                             <td>
-                                <form method="POST" action="{{ url_for('delete_income', income_id=entry[0]) }}">
+                                <form method="POST" action="{{ url_for('delete_income', income_id=entry[0]) }}#income-section">
                                     <button type="submit">Delete</button>
                                 </form>
                             </td>
@@ -60,10 +60,10 @@
         </div>
 
         <!-- Input for Expenses -->
-        <div class="row full-width">
+        <div class="row full-width" id="expense-section">
             <div class="card expense-input">
                 <h2>Add Expense</h2>
-                <form method="POST" action="/add-expense">
+                <form method="POST" action="/add-expense#expense-section">
                     <label for="category">Category:</label>
                     <select id="category" name="category" required>
                         <option value="Food">Food</option>
@@ -99,7 +99,7 @@
                             <td>{{ expense[2] }}</td>
                             <td>{{ expense[3] }}</td>
                             <td>
-                                <form method="POST" action="{{ url_for('delete_expense', expense_id=expense[0]) }}">
+                                <form method="POST" action="{{ url_for('delete_expense', expense_id=expense[0]) }}#expense-section">
                                     <button type="submit">Delete</button>
                                 </form>
                             </td>
@@ -116,10 +116,10 @@
         </div>
 
         <!-- Input for Investment -->
-        <div class="row full-width">
+        <div class="row full-width" id="investment-section">
             <div class="card investment-input">
                 <h2>Investment Portfolio</h2>
-                <form method="POST" action="/add-investment">
+                <form method="POST" action="/add-investment#investment-section">
                     <label for="ticker">Stock Ticker:</label>
                     <input type="text" id="ticker" name="ticker" placeholder="e.g., AAPL" required>
                     <label for="quantity">Quantity:</label>
@@ -155,7 +155,7 @@
                             <td>{{ investment[4] }}</td>
                             <td>{{ investment[5] }}</td>
                             <td>
-                                <form method="POST" action="{{ url_for('delete_investment', investment_id=investment[0]) }}">
+                                <form method="POST" action="{{ url_for('delete_investment', investment_id=investment[0]) }}#investment-section">
                                     <button type="submit">Delete</button>
                                 </form>
                             </td>
@@ -169,6 +169,18 @@
                 <h2>Investment Chart</h2>
                 <img src="{{ url_for('static', filename='investment_chart.png') }}" alt="Investment Chart">
             </div>
+        </div>
+
+
+        <div class="card stock-chart">
+            <h2>Stock Price Chart</h2>
+            <label for="stock-selector">Select Stock:</label>
+            <select id="stock-selector">
+                {% for investment in investments %}
+                <option value="{{ investment[1] }}">{{ investment[1] }}</option>
+                {% endfor %}
+            </select>
+            <canvas id="stockPriceChart" width="300" height="150"></canvas>
         </div>
 
     </div>
