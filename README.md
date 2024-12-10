@@ -1,3 +1,5 @@
+---
+
 # 📊 Financial Tracker
 
 ![Financial Tracker](screenshots/Welcome.png)  
@@ -5,6 +7,8 @@
 
 ## 🌟 Project Overview
 **Financial Tracker** is a comprehensive personal finance dashboard that helps users track their income, expenses, and investments with real-time insights. Designed to simplify financial management, it offers visual charts, intuitive inputs, and seamless user interaction. Perfect for anyone who wants to take control of their finances, this project combines functionality with a sleek, modern design.
+
+🔗 **Live Demo**: [Financial Tracker](https://financial-tracker-mka9.onrender.com/)
 
 ---
 
@@ -66,7 +70,6 @@
 ![Income Tracking](screenshots/Income.png)
 ![Expense Tracking](screenshots/Expense.png)
 
-
 ### Stock Price Live Chart for the Stocks in Portfolio:
 ![Stock Chart](screenshots/LiveStock.png)
 
@@ -114,11 +117,13 @@ This project is licensed under the MIT License. Feel free to use and modify it a
 
 ## 💬 Contact
 Feel free to reach out for suggestions or collaborations:
-- **Email**: [your.email@example.com](mailto:negarpr@hotmail.com)
-- **LinkedIn**: [Your LinkedIn Profile]((https://www.linkedin.com/in/negar-pirasteh/))
-- **GitHub**: [Your GitHub Profile]((https://github.com/negarprh))
+- **Email**: [negarpr@hotmail.com](mailto:negarpr@hotmail.com)
+- **LinkedIn**: [Negar Pirasteh](https://www.linkedin.com/in/negar-pirasteh/)
+- **GitHub**: [Negar Pirasteh](https://github.com/negarprh)
 
 ---
 
 ### 🌟 Don't forget to ⭐ the repository if you find it helpful!
+
+---
 
