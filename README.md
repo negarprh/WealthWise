@@ -1,6 +1,6 @@
 # 📊 Financial Tracker
 
-![Financial Tracker](screenshots/Welcome)  
+![Financial Tracker](screenshots/Welcome.png)  
 *Your ultimate tool for personal finance management.*
 
 ## 🌟 Project Overview
