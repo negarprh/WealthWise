@@ -62,14 +62,17 @@
 
 ## 📷 Screenshots
 
-### Dashboard Overview:
-![Dashboard](https://via.placeholder.com/800x400)
+### Income, Expense, and Stock Portfolio Tracking:
+![Income Tracking](screenshots/Income.png)
+![Expense Tracking](screenshots/Expense.png)
 
-### Stock Price Chart:
-![Stock Chart](https://via.placeholder.com/800x400)
 
-### Expense Tracking:
-![Expense Tracking](https://via.placeholder.com/800x400)
+### Stock Price Live Chart for the Stocks in Portfolio:
+![Stock Chart](screenshots/LiveStock.png)
+
+### SignUp and LogIn:
+![SignUp Page](screenshots/SignUp.png)
+![LogIn Page](screenshots/LogIn.png)
 
 ---
 
