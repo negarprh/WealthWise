@@ -21,7 +21,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 88vh;
+    height: 100vh;
     background: #232323;
     margin: 0;
     font-family: 'Poppins', sans-serif;
@@ -34,7 +34,7 @@ body {
     padding: 3rem;
     border-radius: 15px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-    max-width: 500px;
+    max-width: 600px;
     animation: fadeIn 1s ease-in-out;
     z-index: 2;
 }
@@ -219,7 +219,7 @@ footer:hover {
 
 /* Signup Container */
 .signup-container {
-
+    height: 100vh;
     background: #232323;
     min-height: 88vh;
     display: flex;
@@ -285,11 +285,11 @@ footer:hover {
 /* Signup Card */
 .signup-card {
     background: rgba(0, 0, 0, 0.67);
-       padding: 40px 60px;
+    padding: 40px 60px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     text-align: center;
 
     position: relative;
@@ -377,13 +377,14 @@ footer:hover {
 
 /* Login Container */
 .login-container {
-     background: rgba(0, 0, 0, 0.87);
+    background: rgba(0, 0, 0, 0.87);
     min-height: 88vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     position: relative;
+    height: 100vh;
 }
 
 /* Floating Gradient Circles for Login */
@@ -418,7 +419,7 @@ footer:hover {
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     text-align: center;
     position: relative;
     overflow: hidden;
