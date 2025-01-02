@@ -5,6 +5,7 @@ html {
 
 *{
       font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
 }
 body {
     margin: 0;
@@ -54,38 +55,41 @@ body {
 
 .welcome-buttons {
     display: flex;
+    width: 510px;
+    height: 65px;
+    justify-content: center;
     gap: 1.5rem;
     justify-content: center;
     margin-bottom: 2rem;
+    /*border: 1px solid pink;*/
+    *{
+        text-decoration: none;
+    }
+
 }
 
-.welcome-button {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 25px;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
 
 .welcome-button.login-button {
     background-color: #27ae60;
+    padding: 10px;
+    margin: 10px;
+
 }
 
 .welcome-button.login-button:hover {
     background-color: #229954;
-    transform: translateY(-3px);
+    transform: scale(1.1);
 }
 
 .welcome-button.signup-button {
     background-color: #5D5D5D;
+     padding: 10px;
+    margin: 10px;
 }
 
 .welcome-button.signup-button:hover {
     background-color: #313232;
-    transform: translateY(-3px);
+    transform: scale(1.1);
 }
 
 .welcome-footer {
@@ -135,32 +139,6 @@ body {
 }
 
 
-
-
-
-/*!* Animation for card appearance *!*/
-/*@keyframes fadeIn {*/
-/*    from { opacity: 0; transform: translateY(-20px); }*/
-/*    to { opacity: 1; transform: translateY(0); }*/
-/*}*/
-
-/* Responsive Styling */
-/*@media (max-width: 600px) {*/
-/*    .welcome-card {*/
-/*        padding: 2rem;*/
-/*        width: 90%;*/
-/*    }*/
-/*    .welcome-title {*/
-/*        font-size: 2.5rem;*/
-/*    }*/
-/*    .welcome-subtitle {*/
-/*        font-size: 1.2rem;*/
-/*    }*/
-/*    .welcome-button {*/
-/*        padding: 0.8rem 1.5rem;*/
-/*        font-size: 1rem;*/
-/*    }*/
-/*}*/
 
 /* Navbar */
 .navbar {
@@ -238,23 +216,6 @@ footer:hover {
     transition: background 0.5s ease-in-out;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .navbar-links {
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 10px;
-    }
-
-    .navbar-title {
-        margin-bottom: 10px;
-    }
-}
 
 /* Signup Container */
 .signup-container {
@@ -412,20 +373,6 @@ footer:hover {
     color: #777;
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-    .signup-card {
-        padding: 20px;
-    }
-
-    .signup-title {
-        font-size: 20px;
-    }
-
-    .signup-button {
-        font-size: 14px;
-    }
-}
 
 
 /* Login Container */
@@ -547,20 +494,6 @@ footer:hover {
     color: #777;
 }
 
-/* Responsive Design for Login */
-@media (max-width: 600px) {
-    .login-card {
-        padding: 20px;
-    }
-
-    .login-title {
-        font-size: 20px;
-    }
-
-    .login-button {
-        font-size: 14px;
-    }
-}
 
 /* General Dashboard Styles */
 .dashboard {
@@ -569,8 +502,8 @@ footer:hover {
     gap: 40px;
     padding: 20px;
     background: #2b2b2b; /* Slightly lighter than pure black to soften the look */
-    color: #bcbcbc; /* Light text for readability */
-    min-height: 100vh;
+    color: #bcbcbc;      /* Light text for readability */
+    min-height: 100vh;   /* May be overridden in small-screen media queries if needed */
 }
 
 /* Section Wrappers for Income, Expenses, and Investments */
@@ -631,7 +564,9 @@ footer:hover {
 }
 
 /* Card Style */
-.income-input, .income-table, .expense-input, .expense-table, .investment-input, .investment-table {
+.income-input, .income-table,
+.expense-input, .expense-table,
+.investment-input, .investment-table {
     background: #1e1e1e; /* A bit lighter than black to differentiate from the dashboard background */
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
@@ -643,12 +578,16 @@ footer:hover {
     gap: 20px;
 }
 
-.income-input:hover, .income-table:hover, .expense-input:hover, .expense-table:hover, .investment-input:hover, .investment-table:hover {
+.income-input:hover, .income-table:hover,
+.expense-input:hover, .expense-table:hover,
+.investment-input:hover, .investment-table:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 35px rgba(0, 0, 0, 0.4);
 }
 
-.income-input h2, .income-table h2, .expense-input h2, .expense-table h2, .investment-input h2, .investment-table h2 {
+.income-input h2, .income-table h2,
+.expense-input h2, .expense-table h2,
+.investment-input h2, .investment-table h2 {
     font-size: 28px;
     font-weight: bold;
     color: #A3FDA1; /* Light green for headings */
@@ -662,13 +601,16 @@ footer:hover {
 /* Enhanced Table Styles */
 table {
     width: 100%;
-    border-collapse: collapse; /* Make borders collapse to create a unified look */
+    max-width: 100%;       /* Ensure table doesn't overflow container */
+    display: table;        /* Normal table layout; if needed, you can do display: block with overflow-x */
+    border-collapse: collapse; /* Make borders collapse for a unified look */
     margin-top: 15px;
-    overflow: hidden;
     border-radius: 12px;
-    background: #1e1e1e; /* Slightly lighter to create contrast */
+    background: #1e1e1e;       /* Slightly lighter to create contrast */
     transition: box-shadow 0.4s;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;          /* Use this if you want the radius to clip the table corners */
+
 }
 
 table:hover {
@@ -676,7 +618,7 @@ table:hover {
 }
 
 thead {
-    background: #27ae60; /* Consistent green for headers */
+    background: #27ae60;  /* Consistent green for headers */
     color: #ffffff;
     text-transform: uppercase;
     font-size: 18px;
@@ -685,9 +627,9 @@ thead {
 }
 
 th, td {
-    padding: 15px 20px; /* Added padding for more space and better readability */
+    padding: 15px 20px;  /* Added padding for more space and better readability */
     text-align: left;
-    border-bottom: 1px solid #444; /* Subtle gray lines to add separation between rows */
+    border-bottom: 1px solid #444;  /* Subtle gray lines to add separation between rows */
     font-size: 16px;
     color: #e0e0e0;
     background: rgba(255, 255, 255, 0.05); /* Very subtle white tint to add depth */
@@ -730,13 +672,13 @@ th {
 }
 
 tfoot {
-    background: #1e1e1e; /* Footer same as card background */
+    background: #1e1e1e;         /* Footer same as card background */
     border-top: 3px solid #229954; /* Thicker border for better visual separation */
 }
 
 /* Refined Shadows and Borders */
 table, th, td {
-    border: 1px solid #333; /* Refined border color for a polished and consistent appearance */
+    border: 1px solid #333;  /* Refined border color for a polished and consistent appearance */
 }
 
 /* Form Styles */
@@ -771,7 +713,7 @@ input:focus, select:focus {
 }
 
 button {
-    background: #27ae60; /* Matching button style */
+    background: #27ae60;    /* Matching button style */
     color: #ffffff;
     font-weight: bold;
     border: none;
@@ -793,12 +735,13 @@ button:hover {
     background: #1e1e1e; /* Slightly lighter than the background for distinction */
     border-radius: 15px;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
-    padding: 50px 200px;
+    padding: 50px 200px;  /* Large padding for big screens; we’ll reduce below for small screens */
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     color: #e0e0e0;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    justify-content: center;
 }
 
 .chart-card h2 {
@@ -810,19 +753,17 @@ button:hover {
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
+#stock-price-display {
+    font-size: 15px; /* Adjust font size */
+    font-weight: bold; /* Make it stand out */
+    color: #A3FDA1;
+    text-align: center; /* Center it above the chart */
+    margin-bottom: 15px; /* Add some space between the text and the chart */
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .row {
-        flex-direction: column;
-    }
+    padding: 8px; /* Add padding for a box-like look */
 
-    .income-input, .income-table, .expense-input, .expense-table, .investment-input, .investment-table {
-        padding: 20px;
-    }
+    display: flex; /* Keep it compact and centered */
 }
-
-
 
 /* Flash Message Styles */
 .flashes {
@@ -857,20 +798,180 @@ button:hover {
     border: 1px solid #ffeeba;
 }
 
+
+.scroll-message {
+    display: none; /* Hide by default */
+    font-size: 14px;
+    color: #bcbcbc; /* Light color matching your theme */
+    text-align: center;
+    margin-bottom: 5px;
+}
+
 /* Responsive Design */
-@media (max-width: 768px) {
-    .dashboard {
-        grid-template-columns: 1fr;
+
+@media (max-width: 1440px) {
+     html, body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* Ensure no horizontal scrolling */
+         width: 100%;
     }
 
-    .card {
-        padding: 15px;
+    .welcome-container {
+        height: 95vh; /* Slight adjustment for smaller screens */
+        padding: 0 20px; /* Add padding only horizontally */
+        overflow: hidden; /* Prevent any overflow issues */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .welcome-card {
+        max-width: 600px; /* Adjust max-width for better scaling */
+        width: 85%; /* Ensure responsiveness */
+        padding: 2.5rem; /* Adjust padding for better fit */
+        margin: 0 auto; /* Center the card */
+        box-sizing: border-box; /* Ensure padding does not increase width */
+    }
+
+    .welcome-title {
+        font-size: 2.5rem; /* Slightly reduce title size */
+        margin-bottom: 1rem; /* Adjust spacing */
+        text-align: center; /* Ensure it's properly aligned */
+    }
+
+    .welcome-subtitle {
+        font-size: 1.25rem; /* Reduce subtitle font size slightly */
+        line-height: 1.4; /* Adjust line height */
+        text-align: center; /* Center-align subtitle */
+    }
+
+    .welcome-container::before,
+    .welcome-container::after {
+        width: 200px; /* Reduce the size of floating circles */
+        height: 200px;
+        position: absolute;
+        overflow: hidden; /* Prevent circles from contributing to scroll */
+    }
+
+    .welcome-container::before {
+        top: 10%; /* Adjust position */
+        left: -50px; /* Keep within viewport */
+    }
+
+    .welcome-container::after {
+        bottom: 10%; /* Adjust position */
+        right: -50px; /* Keep within viewport */
+    }
+
+    footer {
+        padding: 10px 0; /* Reduce footer padding */
+        font-size: 14px; /* Slightly smaller text */
+        text-align: center; /* Ensure footer text is aligned */
+        box-sizing: border-box; /* Prevent padding from causing overflow */
+    }
+
+
+    .chart-card {
+        padding: 10px; /* Reduce padding for medium screens */
+        margin: 0 auto; /* Center the chart */
+        overflow: hidden;
+    }
+
+    canvas {
+        max-width: 95%; /* Scale down slightly for laptops */
+        height: auto; /* Maintain aspect ratio */
     }
 }
 
+/* =======================================
+   1) Tablet & Smaller Laptops (<= 1024px)
+   ======================================= */
+@media (max-width: 1024px) {
+    /* NAVBAR: If desired, you can make the nav more flexible here as well
+       or reuse the 768px styles below. */
 
-/* Navbar */
+    .welcome-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Increase to handle content flow */
+        padding: 0;
+        overflow-x: hidden;
+        /*overflow-y: hidden;*/
+    }
+    .welcome-card {
+        padding: 2rem;
+        width: 80%;
+        max-width: none;
+        box-shadow: none;
+    }
+
+    .welcome-title {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .welcome-subtitle {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .welcome-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .welcome-button {
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+        width: 100%;
+        max-width: none;
+        text-align: center;
+    }
+
+
+
+    /* DASHBOARD: Stack .row elements vertically for narrower screens */
+    .dashboard .row {
+        flex-direction: column;
+        gap: 30px; /* Adjust vertical spacing as needed */
+        box-sizing: border-box;
+    }
+
+    /* Make tables/charts/cards take full width in a single column */
+    .income-table, .expense-table, .investment-table,
+    .income-input, .expense-input, .investment-input,
+    .chart-card {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    /* Adjust padding for charts/tables to fit smaller widths */
+    .chart-card {
+    padding: 40px 60px;
+    }
+
+    /* Slightly reduce font sizes inside tables for better readability on narrower screens */
+    table th, table td {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    /* Adjust button sizes for narrower screens */
+    button {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+}
+
+/* =============================
+   2) Mobile & Small Devices (<= 768px)
+   ============================= */
 @media (max-width: 768px) {
+    /* NAVBAR */
     .navbar {
         flex-direction: column;
         align-items: flex-start;
@@ -885,31 +986,48 @@ button:hover {
     .navbar-title {
         margin-bottom: 10px;
     }
-}
 
-/* Welcome Page */
-@media (max-width: 600px) {
+    /* WELCOME PAGE */
+    .welcome-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 110vh; /* Increase to handle content flow */
+        padding: 0;
+        overflow-x: hidden;
+    }
+
     .welcome-card {
         padding: 2rem;
-        width: 90%;
+        width: 80%;
+        max-width: none;
+        box-shadow: none;
     }
 
     .welcome-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        text-align: center;
     }
 
     .welcome-subtitle {
-        font-size: 1.2rem;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .welcome-buttons {
+        width: 100%;
+        justify-content: center;
     }
 
     .welcome-button {
-        padding: 0.8rem 1.5rem;
+        padding: 0.8rem 1rem;
         font-size: 1rem;
+        width: 100%;
+        max-width: none;
+        text-align: center;
     }
-}
 
-/* Signup and Login Pages */
-@media (max-width: 600px) {
+    /* SIGNUP & LOGIN CARDS */
     .signup-card, .login-card {
         padding: 20px;
     }
@@ -921,51 +1039,99 @@ button:hover {
     .signup-button, .login-button {
         font-size: 14px;
     }
-}
-
-/*.stock-chart {*/
-/*    max-width: 600px;*/
-/*    margin: 0 auto;*/
-/*    padding: 20px;*/
-/*}*/
 
 
+       .signup-card { padding: 20px; }
+       .signup-title { font-size: 20px; }
+       .signup-button { font-size: 14px; }
+       .login-card { padding: 20px; }
+       .login-title { font-size: 20px; }
+       .login-button { font-size: 14px; }
 
 
-/* Responsive */
-/* Dashboard */
-@media (max-width: 768px) {
+    /* DASHBOARD ROWS */
+    .dashboard {
+       min-height: auto;
+        height: auto;
+        overflow-y: auto;  /* Let the user scroll vertically */
+        overflow-x: hidden;
+    }
     .row {
         flex-direction: column;
+        gap: 20px;
     }
 
-    .income-input, .expense-input, .investment-input,
-    .income-table, .expense-table, .investment-table {
-        padding: 15px;
+    /* TABLES, INPUTS, CHARTS */
+    .income-input, .income-table,
+    .expense-input, .expense-table,
+    .investment-input, .investment-table {
+        width: 100%;
+    max-width: 100%;
+    padding: 20px;
+    margin: 0 auto;
     }
-}
 
-@media (max-width: 480px) {
-    table th, table td {
+    /* Fine-tune table text size & padding */
+    .investment-table table th,
+    .investment-table table td,
+    .income-table table th,
+    .income-table table td,
+    .expense-table table th,
+    .expense-table table td {
         font-size: 14px;
         padding: 10px;
     }
 
+    /* Buttons */
     button {
         font-size: 14px;
         padding: 10px 15px;
     }
 
-    form label, input, select {
+    /* Form elements */
+    form label,
+    input,
+    select {
         font-size: 14px;
-        padding: 10px;
+        padding: 10px 15px;
     }
-}
 
-/* Chart Cards */
-@media (max-width: 768px) {
+    /* Chart card adjustments */
     .chart-card {
         padding: 20px;
         width: 100%;
     }
 }
+
+/* For very small screens, like iPhone 14 Pro Max (~430px wide) */
+/* For very small screens (i.e. <= 480px) */
+@media (max-width: 480px) {
+   /* Further reduce chart padding on very narrow devices to avoid horizontal scroll */
+  .chart-card {
+    padding: 20px;
+  }
+
+  .welcome-button{
+      width: 100%;
+      font-size: 11px;
+  }
+
+  .stock-chart{
+      overflow-x: auto
+  }
+
+  table {
+    display: block;      /* Allows horizontal scrolling if needed */
+    overflow-x: auto;
+    white-space: nowrap; /* Prevent table cells from wrapping and going vertical */
+  }
+
+  table th, table td {
+    font-size: 12px;    /* Smaller text if desired */
+    padding: 8px;
+  }
+  .scroll-message {
+        display: block; /* Allow the message to appear only on small screens */
+    }
+}
+

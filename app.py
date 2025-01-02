@@ -161,21 +161,32 @@ def dashboard():
     with sqlite3.connect('finance_tracker.db') as conn:
         cursor = conn.cursor()
 
-        # Fetch user-specific expenses
-        cursor.execute("SELECT id, date, category, amount FROM expenses WHERE user_id = ? ORDER BY date DESC", (user_id,))
+        # Fetch and format expenses (date as YYYY-MM-DD)
+        cursor.execute("""
+            SELECT id, strftime('%Y-%m-%d', date) as date, category, amount 
+            FROM expenses 
+            WHERE user_id = ? 
+            ORDER BY date DESC
+        """, (user_id,))
         expenses = cursor.fetchall()
 
-        # Fetch user-specific investments
-        cursor.execute("SELECT id, ticker, quantity, price, total, date FROM investments WHERE user_id = ? ORDER BY date DESC", (user_id,))
+        # Fetch and format investments (date as YYYY-MM-DD)
+        cursor.execute("""
+            SELECT id, ticker, quantity, price, total, strftime('%Y-%m-%d', date) as date 
+            FROM investments 
+            WHERE user_id = ? 
+            ORDER BY date DESC
+        """, (user_id,))
         investments = cursor.fetchall()
 
-        # Fetch user-specific income
-        cursor.execute("SELECT id, monthly_income, month, date FROM income WHERE user_id = ? ORDER BY date DESC", (user_id,))
+        # Fetch and format income (date as YYYY-MM-DD)
+        cursor.execute("""
+            SELECT id, monthly_income, month, strftime('%Y-%m-%d', date) as date 
+            FROM income 
+            WHERE user_id = ? 
+            ORDER BY date DESC
+        """, (user_id,))
         income = cursor.fetchall()
-
-        # Generate charts
-        generate_expense_chart(user_id)
-        generate_investment_chart(user_id)
 
     return render_template(
         'dashboard.html',
@@ -183,6 +194,7 @@ def dashboard():
         investments=investments,
         income=income
     )
+
 
 
 

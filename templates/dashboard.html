@@ -32,6 +32,7 @@
             <!-- Income Table -->
             <div class="card income-table">
                 <h2>Income Overview</h2>
+                <p class="scroll-message">Swipe left or right to view the full table.</p>
                 <table>
                     <thead>
                         <tr>
@@ -83,6 +84,7 @@
         <div class="row">
             <div class="card expense-table">
                 <h2>Expenses</h2>
+                <p class="scroll-message">Swipe left or right to view the full table.</p>
                 <table>
                     <thead>
                         <tr>
@@ -135,6 +137,7 @@
         <div class="row">
             <div class="card investment-table">
                 <h2>Investment Portfolio</h2>
+                <p class="scroll-message">Swipe left or right to view the full table.</p>
                 <table>
                     <thead>
                         <tr>
@@ -174,7 +177,10 @@
 
         <div class="card stock-chart">
             <h2>Stock Price Chart</h2>
+            <p id="stock-price-display">Current Price: <span id="stock-price">-</span></p>
+
             <label for="stock-selector">Select Stock:</label>
+
             <select id="stock-selector">
                 {% for investment in investments %}
                 <option value="{{ investment[1] }}">{{ investment[1] }}</option>

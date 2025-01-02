@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const stockSelector = document.getElementById('stock-selector');
     const ctx = document.getElementById('stockPriceChart').getContext('2d');
+    const stockPriceDisplay = document.getElementById('stock-price'); // Element to display current price
     let stockChart;
 
     function fetchStockData(ticker) {
@@ -18,12 +19,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.log('Prices:', prices); // Log chart data
 
                     updateChart(labels, prices);
+
+                    // Update the current price display with the most recent price
+                    const latestPrice = prices[prices.length - 1]; // Get the latest price
+                    stockPriceDisplay.textContent = `$${latestPrice.toFixed(2)}`; // Display the price
                 } else {
                     alert('Error fetching stock data: ' + data.message);
+                    stockPriceDisplay.textContent = 'Unavailable'; // Clear price display on error
                 }
             })
             .catch((error) => {
                 console.error('Fetch error:', error);
+                stockPriceDisplay.textContent = 'Error'; // Handle fetch error
             });
     }
 
@@ -68,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
         fetchStockData(stockSelector.value);
     }
 
-    // Update chart when a new stock is selected
+    // Update chart and price when a new stock is selected
     stockSelector.addEventListener('change', function () {
         fetchStockData(this.value);
     });
