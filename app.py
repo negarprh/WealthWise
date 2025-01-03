@@ -214,6 +214,8 @@ def add_expense():
             cursor = conn.cursor()
             cursor.execute("INSERT INTO expenses (user_id, category, amount) VALUES (?, ?, ?)", (user_id, category, amount))
             conn.commit()
+        # Regenerate the chart
+        generate_expense_chart(user_id)
         flash('Expense added successfully!', 'success')
     except Exception as e:
         flash(f"Error adding expense: {e}", "error")
@@ -305,6 +307,8 @@ def add_investment():
             cursor.execute("INSERT INTO investments (user_id, ticker, quantity, price, total) VALUES (?, ?, ?, ?, ?)",
                            (user_id, ticker, quantity, price, total_value))
             conn.commit()
+
+        generate_investment_chart(user_id)
 
         flash('Investment added successfully!', 'success')
     except Exception as e:
