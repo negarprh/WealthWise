@@ -229,13 +229,14 @@ def delete_expense(expense_id):
             cursor = conn.cursor()
             cursor.execute("DELETE FROM expenses WHERE id = ? AND user_id = ?", (expense_id, user_id))
             conn.commit()
+
+        # Regenerate the expense chart after deletion
+        generate_expense_chart(user_id)
+
         flash('Expense deleted successfully!', 'success')
     except Exception as e:
         flash(f"Error deleting expense: {e}", 'error')
     return redirect(url_for('dashboard') + '#expense-section')
-
-
-
 
 
 # Add income with month tracking
@@ -310,6 +311,7 @@ def add_investment():
         flash(f"Error adding investment: {e}", "error")
     return redirect(url_for('dashboard') + '#investment-section')
 
+
 @app.route('/delete-investment/<int:investment_id>', methods=['POST'])
 @login_required
 def delete_investment(investment_id):
@@ -319,10 +321,15 @@ def delete_investment(investment_id):
             cursor = conn.cursor()
             cursor.execute("DELETE FROM investments WHERE id = ? AND user_id = ?", (investment_id, user_id))
             conn.commit()
+
+        # Regenerate the investment chart after deletion
+        generate_investment_chart(user_id)
+
         flash('Investment deleted successfully!', 'success')
     except Exception as e:
         flash(f"Error deleting Investment: {e}", 'error')
     return redirect(url_for('dashboard') + '#investment-section')
+
 
 # Generate expense chart function
 def generate_expense_chart(user_id):
