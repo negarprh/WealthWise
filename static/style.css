@@ -736,7 +736,7 @@ button:hover {
     background: #1e1e1e; /* Slightly lighter than the background for distinction */
     border-radius: 15px;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
-    padding: 50px 200px;  /* Large padding for big screens; we’ll reduce below for small screens */
+    padding: 10px ;  /* Large padding for big screens; we’ll reduce below for small screens */
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     color: #e0e0e0;
     display: flex;
@@ -744,6 +744,7 @@ button:hover {
     gap: 20px;
     justify-content: center;
     width: 100%;
+    max-width: 100%;
 }
 
 .chart-card h2 {
@@ -755,6 +756,12 @@ button:hover {
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
+
+.chart-card img{
+    width: 100%;
+    padding: 50px;
+}
+
 #stock-price-display {
     font-size: 15px; /* Adjust font size */
     font-weight: bold; /* Make it stand out */
