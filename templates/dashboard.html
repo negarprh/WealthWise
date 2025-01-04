@@ -113,7 +113,7 @@
 
             <div class="chart-card expense-chart">
                 <h2>Expense Chart</h2>
-                <img src="{{ url_for('static', filename='expense_chart.png') }}" alt="Expense Chart">
+                <img src="data:image/png;base64,{{ expense_chart }}" alt="Expense Chart">
             </div>
         </div>
 
@@ -169,8 +169,8 @@
             </div>
 
             <div class="chart-card investment-chart">
-                <h2>Investment Chart</h2>
-                <img src="{{ url_for('static', filename='investment_chart.png') }}" alt="Investment Chart">
+                 <h2>Investment Chart</h2>
+                 <img src="data:image/png;base64,{{ investment_chart }}" alt="Investment Chart">
             </div>
         </div>
 

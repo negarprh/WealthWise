@@ -11,7 +11,8 @@ from datetime import timedelta
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
-
+import io
+import base64
 
 
 
@@ -161,7 +162,7 @@ def dashboard():
     with sqlite3.connect('finance_tracker.db') as conn:
         cursor = conn.cursor()
 
-        # Fetch and format expenses (date as YYYY-MM-DD)
+        # Fetch expenses
         cursor.execute("""
             SELECT id, strftime('%Y-%m-%d', date) as date, category, amount 
             FROM expenses 
@@ -170,7 +171,7 @@ def dashboard():
         """, (user_id,))
         expenses = cursor.fetchall()
 
-        # Fetch and format investments (date as YYYY-MM-DD)
+        # Fetch investments
         cursor.execute("""
             SELECT id, ticker, quantity, price, total, strftime('%Y-%m-%d', date) as date 
             FROM investments 
@@ -179,7 +180,7 @@ def dashboard():
         """, (user_id,))
         investments = cursor.fetchall()
 
-        # Fetch and format income (date as YYYY-MM-DD)
+        # Fetch income
         cursor.execute("""
             SELECT id, monthly_income, month, strftime('%Y-%m-%d', date) as date 
             FROM income 
@@ -188,12 +189,19 @@ def dashboard():
         """, (user_id,))
         income = cursor.fetchall()
 
+        # Generate Base64 charts
+        expense_chart_base64 = generate_expense_chart_base64(user_id)
+        investment_chart_base64 = generate_investment_chart_base64(user_id)
+
     return render_template(
         'dashboard.html',
         expenses=expenses,
         investments=investments,
-        income=income
+        income=income,
+        expense_chart=expense_chart_base64,
+        investment_chart=investment_chart_base64
     )
+
 
 
 
@@ -215,7 +223,7 @@ def add_expense():
             cursor.execute("INSERT INTO expenses (user_id, category, amount) VALUES (?, ?, ?)", (user_id, category, amount))
             conn.commit()
         # Regenerate the chart
-        generate_expense_chart(user_id)
+        generate_expense_chart_base64(user_id)
         flash('Expense added successfully!', 'success')
     except Exception as e:
         flash(f"Error adding expense: {e}", "error")
@@ -233,7 +241,7 @@ def delete_expense(expense_id):
             conn.commit()
 
         # Regenerate the expense chart after deletion
-        generate_expense_chart(user_id)
+        generate_expense_chart_base64(user_id)
 
         flash('Expense deleted successfully!', 'success')
     except Exception as e:
@@ -308,7 +316,7 @@ def add_investment():
                            (user_id, ticker, quantity, price, total_value))
             conn.commit()
 
-        generate_investment_chart(user_id)
+        generate_investment_chart_base64(user_id)
 
         flash('Investment added successfully!', 'success')
     except Exception as e:
@@ -327,7 +335,7 @@ def delete_investment(investment_id):
             conn.commit()
 
         # Regenerate the investment chart after deletion
-        generate_investment_chart(user_id)
+        generate_investment_chart_base64(user_id)
 
         flash('Investment deleted successfully!', 'success')
     except Exception as e:
@@ -335,29 +343,54 @@ def delete_investment(investment_id):
     return redirect(url_for('dashboard') + '#investment-section')
 
 
-# Generate expense chart function
-def generate_expense_chart(user_id):
+
+def generate_expense_chart_base64(user_id):
     with sqlite3.connect('finance_tracker.db') as conn:
-        df = pd.read_sql_query("SELECT category, SUM(amount) as total FROM expenses WHERE user_id = ? GROUP BY category", conn, params=(user_id,))
+        df = pd.read_sql_query(
+            "SELECT category, SUM(amount) as total FROM expenses WHERE user_id = ? GROUP BY category", conn,
+            params=(user_id,))
 
     plt.figure(figsize=(8, 6))
-    plt.bar(df['category'], df['total'], color='#A3FDA1')
-    plt.title('Expenses by Category')
-    plt.xlabel('Category')
-    plt.ylabel('Total Expense')
-    plt.savefig('static/expense_chart.png')
+    if not df.empty:
+        plt.bar(df['category'], df['total'], color='#A3FDA1')
+        plt.title('Expenses by Category')
+        plt.xlabel('Category')
+        plt.ylabel('Total Expense')
+    else:
+        plt.text(0.5, 0.5, 'No Data Available', horizontalalignment='center', verticalalignment='center', fontsize=12)
+        plt.title('Expenses by Category')
+
+    # Convert plot to Base64
+    img = io.BytesIO()
+    plt.savefig(img, format='png')
+    img.seek(0)
+    base64_image = base64.b64encode(img.getvalue()).decode('utf-8')
     plt.close()
+    return base64_image
+
 
 # Generate investment chart function
-def generate_investment_chart(user_id):
+def generate_investment_chart_base64(user_id):
     with sqlite3.connect('finance_tracker.db') as conn:
-        df = pd.read_sql_query("SELECT ticker, SUM(total) as total_value FROM investments WHERE user_id = ? GROUP BY ticker", conn, params=(user_id,))
+        df = pd.read_sql_query(
+            "SELECT ticker, SUM(total) as total_value FROM investments WHERE user_id = ? GROUP BY ticker", conn,
+            params=(user_id,))
 
     plt.figure(figsize=(8, 6))
-    plt.pie(df['total_value'], labels=df['ticker'], autopct='%1.1f%%', startangle=90)
-    plt.title('Investment Portfolio Distribution')
-    plt.savefig('static/investment_chart.png')
+    if not df.empty:
+        plt.pie(df['total_value'], labels=df['ticker'], autopct='%1.1f%%', startangle=90)
+        plt.title('Investment Portfolio Distribution')
+    else:
+        plt.text(0.5, 0.5, 'No Data Available', horizontalalignment='center', verticalalignment='center', fontsize=12)
+        plt.title('Investment Portfolio Distribution')
+
+    # Convert plot to Base64
+    img = io.BytesIO()
+    plt.savefig(img, format='png')
+    img.seek(0)
+    base64_image = base64.b64encode(img.getvalue()).decode('utf-8')
     plt.close()
+    return base64_image
 
 
 def fetch_stock_data(ticker):

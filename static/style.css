@@ -16,6 +16,12 @@ body {
 
 }
 
+.logo-top{
+    border: 3px solid red;
+    border-radius: 50%;
+}
+
+
 /* Welcome Page Styling */
 .welcome-container {
     display: flex;
@@ -153,6 +159,19 @@ body {
     top: 0;
     z-index: 1000;
 }
+
+.logo-img {
+    height: 50px; /* Adjust to your desired height */
+    width: auto; /* Maintain aspect ratio */
+    cursor: pointer; /* Indicates it's clickable */
+}
+
+.navbar-title-link {
+    text-decoration: none; /* Remove underline */
+    display: flex; /* Align image properly */
+    align-items: center; /* Center-align image */
+}
+
 
 .navbar-title {
     font-size: 24px;
