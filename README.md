@@ -1,15 +1,26 @@
-
 # 📊 Financial Tracker
-
-🔗 **Live Demo**: [Financial Tracker](https://financial-tracker-mka9.onrender.com/)
-
-![Financial Tracker](screenshots/Welcome.png)  
-*Your ultimate tool for personal finance management.*
 
 ## 🌟 Project Overview
 **Financial Tracker** is a comprehensive personal finance dashboard that helps users track their income, expenses, and investments with real-time insights. Designed to simplify financial management, it offers visual charts, intuitive inputs, and seamless user interaction. Perfect for anyone who wants to take control of their finances, this project combines functionality with a sleek, modern design.
 
 ---
+
+## 📡 Live Demo
+
+🌐 **Live Link:** [Financial Tracker](https://financial-tracker-mka9.onrender.com/)
+
+---
+
+## 🎥 Demo Video
+
+🎬 **Watch the Demo:** ![Wealthwise Demo](./demo/wealthwisedemo.gif)
+
+*Your ultimate tool for personal finance management.*
+
+---
+
+
+
 
 ## 🛠️ Features
 
@@ -64,6 +75,9 @@
 ---
 
 ## 📷 Screenshots
+
+### Homepage
+![Financial Tracker](screenshots/Welcome.png)  
 
 ### Income, Expense, and Stock Portfolio Tracking:
 ![Income Tracking](screenshots/Income.png)
