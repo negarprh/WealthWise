@@ -123,10 +123,6 @@ Access the app at `http://127.0.0.1:5000/`.
 
 ---
 
-## 📜 License
-This project is licensed under the MIT License. Feel free to use and modify it as per your needs.
-
----
 
 ## 💬 Contact
 Feel free to reach out for suggestions or collaborations:
