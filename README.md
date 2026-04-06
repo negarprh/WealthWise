@@ -96,7 +96,7 @@
 
 ### 1️⃣ **Clone the Repository**
 ```bash
-git clone https://github.com/yourusername/Financial-Tracker.git
+git clone https://github.com/negarprh/Financial-Tracker.git
 cd Financial-Tracker
 ```
 
@@ -122,13 +122,6 @@ Access the app at `http://127.0.0.1:5000/`.
 - **Recurring Transactions**: Automate recurring incomes and expenses.
 
 ---
-
-
-## 💬 Contact
-Feel free to reach out for suggestions or collaborations:
-- **Email**: [negarpr@hotmail.com](mailto:negarpr@hotmail.com)
-- **LinkedIn**: [Negar Pirasteh](https://www.linkedin.com/in/negar-pirasteh/)
-- **GitHub**: [Negar Pirasteh](https://github.com/negarprh)
 
 ---
 
